@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Pixel from './Pixel';
 import Colors from '../Colors';
+import { CANVAS_PREFIX } from '../constants';
 
 const Canvas = props => {
+
+  const [canvasName, setCanvasName] = useState('');
   const [matrix, setMatrix] = useState(Array(30).fill(Array(30).fill(0)));
 
   useEffect(() => {
-    const canvas = localStorage.getItem('latestCanvas');
+    setCanvasName(props.canvasName);
+
+    const canvas = localStorage.getItem(`${CANVAS_PREFIX}${canvasName}`);
 
     if (typeof canvas === 'string') {
       setMatrix(JSON.parse(canvas));
@@ -15,13 +20,13 @@ const Canvas = props => {
 
   const changeColor = (rowIndex, colIndex) => {
     const matrixCopy = JSON.parse(JSON.stringify(matrix));
-    console.log(matrix);
+
     matrixCopy[rowIndex][colIndex] = props.currentColor;
-    handleSave(matrixCopy);
+    handleSave('latestCanvas', matrixCopy);
     setMatrix(matrixCopy);
   };
 
-  const handleSave = matrix => localStorage.setItem('latestCanvas', JSON.stringify(matrix));
+  const handleSave = (canvasName, matrix) => localStorage.setItem(`${CANVAS_PREFIX}${canvasName}`, JSON.stringify(matrix));
 
   return (
     <div className="canvas">
