@@ -5,8 +5,7 @@ import { CANVAS_PREFIX } from '../constants';
 const CanvasMenu = ({ loadCanvas }) => {
   const [canvasList, setCanvasList] = useState([]);
   const [canvasName, setCanvasName] = useState('');
-
-  useEffect(() => {
+  const loadExistingCanvas = () => {
     const savedCanvas = Object
       .keys(localStorage)
       .map((key) => {
@@ -17,9 +16,10 @@ const CanvasMenu = ({ loadCanvas }) => {
         return null;
       })
       .filter(element => element !== null);
-      console.log('passing');
     setCanvasList(savedCanvas);
-  }, []);
+  };
+
+  useEffect(loadExistingCanvas, []);
 
   const parseCanvas = canvas => JSON.parse(canvas);
   const prepareCanvas = canvas => loadCanvas({
@@ -31,9 +31,7 @@ const CanvasMenu = ({ loadCanvas }) => {
       loadCanvas({ canvasName });
     }
   };
-  const changeCanvasName = ({ target: { value } }) => {
-    setCanvasName(value);
-  };
+  const changeCanvasName = ({ target: { value } }) => setCanvasName(value);
   const removeCanvas = (canvasName) => {
     const updatedList = canvasList.filter((canvas) => Object.keys(canvas)[0] !== canvasName);
     setCanvasList(updatedList);
