@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .white {
   background-color: white;
 }
@@ -37,4 +42,20 @@
 
 .pixel.current-color {
   border: 4px solid yellow;
+}
+
+.canvas-preview {
+  align-items: center;
+  border: 1px solid white;
+  color: white;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  width: 200px;
+}
+
+.canvas-preview p {
+  padding: 10px;
 }

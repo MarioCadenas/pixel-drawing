@@ -1,34 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, Fragment } from 'react';
 import Canvas from './components/Canvas';
 import ColorPicker from './components/ColorPicker';
-import { CANVAS_PREFIX } from './constants';
+import CanvasMenu from './components/CanvasMenu';
 
 const App = () => {
   const [color, setColor] = useState(0);
-  const [canvasList, setCanvasList] = useState([]);
+  const [selectedCanvas, setSelectedCanvas] = useState([]);
 
-  useEffect(() => {
-    const savedCanvas = Object
-      .keys(localStorage)
-      .map((key) => {
-        if (key.startsWith(CANVAS_PREFIX)) {
-          const [, canvasName] = key.split(CANVAS_PREFIX);
-          return { [canvasName]: localStorage[key] };
-        }
-        return null;
-      })
-      .filter(element => element !== null);
-
-    setCanvasList(savedCanvas);
-  }, []);
+  const loadCanvas = (canvas) => {
+    setSelectedCanvas(canvas);
+  };
 
   return (
     <div className="App">
-      <ColorPicker
-        currentColor={color}
-        setColor={color => setColor(color)}
-      />
-      <Canvas currentColor={color} />
+      {
+        Object.keys(selectedCanvas).length
+          ? (
+            <Fragment>
+              <ColorPicker
+                currentColor={color}
+                setColor={color => setColor(color)}
+              />
+              <Canvas canvas={selectedCanvas} currentColor={color} />
+            </Fragment>
+          ) : (
+            <CanvasMenu loadCanvas={loadCanvas} />
+          )
+      }
     </div>
   );
 }
