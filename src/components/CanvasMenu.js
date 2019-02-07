@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import CanvasPreview from './CanvasPreview';
+import Form from './Form';
 import { CANVAS_PREFIX } from '../constants';
+import styled from 'styled-components';
+
+
+const Container = styled.div`
+
+`;
+
+const Cards = styled.div`
+
+`;
+
+const FormContainer = styled.div`
+
+`;
 
 const CanvasMenu = ({ loadCanvas }) => {
   const [canvasList, setCanvasList] = useState([]);
@@ -39,27 +54,29 @@ const CanvasMenu = ({ loadCanvas }) => {
   };
 
   return (
-    <div>
-      {
-        canvasList.map(
-          (canvas, index) => (
-            <CanvasPreview
-              key={index}
-              canvasName={Object.keys(canvas)[0]}
-              loadCanvas={() => prepareCanvas(canvas)}
-              removeCanvas={removeCanvas}
-            />
+    <Container>
+      <Cards>
+        {
+          canvasList.map(
+            (canvas, index) => (
+              <CanvasPreview
+                key={index}
+                canvasName={Object.keys(canvas)[0]}
+                loadCanvas={() => prepareCanvas(canvas)}
+                removeCanvas={removeCanvas}
+              />
+            )
           )
-        )
-      }
-      <input
-        name="canvasName"
-        placeholder="Your favorite canvas name"
-        value={canvasName}
-        onChange={changeCanvasName}
-      />
-      <button onClick={createNewCanvas}>Create new canvas</button>
-    </div>
+        }
+      </Cards>
+      <FormContainer>
+        <Form
+          canvasName={canvasName}
+          changeCanvasName={changeCanvasName}
+          createNewCanvas={createNewCanvas}
+        />
+      </FormContainer>
+    </Container>
   );
 };
 
