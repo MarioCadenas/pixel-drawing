@@ -1,10 +1,15 @@
 import React from 'react';
 import Pixel from './Pixel';
 import Colors from '../Colors';
+import styled from 'styled-components';
+
+const ColorPicker = styled.div`
+  margin-right: 10px;
+`;
 
 export default props => {
   return (
-    <div className="colorPicker">
+    <ColorPicker>
     {
       Colors.map(
         (color, index) => (
@@ -17,6 +22,6 @@ export default props => {
         )
       )
     }
-    </div>
+    </ColorPicker>
   );
 };

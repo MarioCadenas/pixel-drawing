@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import Pixel from './Pixel';
 import Colors from '../Colors';
 import { CANVAS_PREFIX } from '../constants';
+import styled from 'styled-components';
+
+const CanvasBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+`;
 
 const Canvas = ({ currentColor, canvas: { canvasName =  '', canvasData = Array(30).fill(Array(30).fill(0)) } }) => {
   const [name] = useState(canvasName);
@@ -18,7 +25,7 @@ const Canvas = ({ currentColor, canvas: { canvasName =  '', canvasData = Array(3
   const handleSave = (name, matrix) => localStorage.setItem(`${CANVAS_PREFIX}${name}`, JSON.stringify(matrix));
 
   return (
-    <div className="canvas">
+    <CanvasBox>
       {
         matrix.map(
           (row, rowIndex) => row.map(
@@ -31,7 +38,7 @@ const Canvas = ({ currentColor, canvas: { canvasName =  '', canvasData = Array(3
           )
         )
       }
-    </div>
+    </CanvasBox>
   );
 };
 
