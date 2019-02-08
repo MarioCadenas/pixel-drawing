@@ -10,6 +10,6 @@ const Pixel = styled.div`
   border: ${({ current }) => (current ? '4px solid yellow': '')};
 `;
 
-export default props => (
-  <Pixel background={props.background} current={props.current} onClick={props.onClick} />
+export default ({ background, current, onClick }) => (
+  <Pixel background={background} current={current} onClick={onClick} />
 );

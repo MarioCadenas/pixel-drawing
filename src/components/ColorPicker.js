@@ -7,7 +7,7 @@ const ColorPicker = styled.div`
   margin-right: 10px;
 `;
 
-export default props => {
+export default ({ currentColor, setColor }) => {
   return (
     <ColorPicker>
     {
@@ -16,8 +16,8 @@ export default props => {
           <Pixel
             key={index}
             background={color}
-            current={Colors[props.currentColor] === color}
-            onClick={e => props.setColor(index)}
+            current={Colors[currentColor] === color}
+            onClick={e => setColor(index)}
           />
         )
       )
