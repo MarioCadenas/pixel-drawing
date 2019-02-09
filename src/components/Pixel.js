@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Pixel = styled.div`
+const PixelDiv = styled.div`
   width: 30px;
   height: 30px;
   border: 1px solid lightgray;
@@ -10,6 +10,8 @@ const Pixel = styled.div`
   border: ${({ current }) => (current ? '4px solid yellow': '')};
 `;
 
-export default ({ background, current, onClick }) => (
-  <Pixel background={background} current={current} onClick={onClick} />
+const Pixel = ({ background, current, onClick }) => (
+  <PixelDiv background={background} current={current} onClick={onClick} />
 );
+
+export default Pixel;

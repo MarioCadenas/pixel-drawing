@@ -18,7 +18,7 @@ const Button = styled.button`
   width: 200px;
 `;
 
-export default ({ canvasName, changeCanvasName, createNewCanvas }) => (
+const Form = ({ canvasName, changeCanvasName, createNewCanvas }) => (
   <Fragment>
     <Input
       name="canvasName"
@@ -29,3 +29,5 @@ export default ({ canvasName, changeCanvasName, createNewCanvas }) => (
     <Button onClick={createNewCanvas}>Create new canvas</Button>
   </Fragment>
 );
+
+export default Form;

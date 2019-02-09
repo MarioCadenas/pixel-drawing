@@ -5,9 +5,9 @@ const Div = styled.div`
   border: 1px solid white;
   color: white;
   height: auto;
-  margin: 20px;
+  margin: 20px 0px 20px 0px;
   text-align: center;
-  width: 250px;
+  width: 100%;
 `;
 
 const CardName = styled.div`
