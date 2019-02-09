@@ -3,13 +3,13 @@ import Pixel from './Pixel';
 import Colors from '../Colors';
 import styled from 'styled-components';
 
-const ColorPicker = styled.div`
+const ColorPickerDiv = styled.div`
   margin-right: 10px;
 `;
 
-export default ({ currentColor, setColor }) => {
+const ColorPicker = ({ currentColor, setColor }) => {
   return (
-    <ColorPicker>
+    <ColorPickerDiv>
     {
       Colors.map(
         (color, index) => (
@@ -22,6 +22,8 @@ export default ({ currentColor, setColor }) => {
         )
       )
     }
-    </ColorPicker>
+    </ColorPickerDiv>
   );
 };
+
+export default ColorPicker;
